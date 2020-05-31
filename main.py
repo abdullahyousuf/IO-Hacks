@@ -14,6 +14,12 @@ s = 5
 #import image
 background = pygame.image.load('Grid.jpeg')
 
+#define color variables
+blue = (0, 0, 128)
+red = (255, 0, 0)
+green = (0, 255, 0)
+black = (0, 0, 0)
+white = (255, 255, 255)
 
 #define simulation variables
 spread_distance = 1
@@ -102,6 +108,57 @@ class person():
             if d<distance:
                 self.x = (-(speed*object[0]-self.x)/(d+1))+self.x
                 self.y = (-(speed*object[1]-self.y)/(d+1))+self.y
+
+
+#this creates the legend that shows what colored person represents what
+#texts
+text1 = ('green = normal')
+text2 = ('red = infected')
+text3 = ('blue = immune')
+text4 = ('black = dead')
+
+#defining text position
+rectX = 70
+rectY = 15
+
+#font object 
+font = pygame.font.Font('freesansbold.ttf', 16)
+
+#text surface 
+text11 = font.render(text1, True, green) 
+text22 = font.render(text2, True, red)
+text33 = font.render(text3, True, blue)
+text44 = font.render(text4, True, black)
+  
+#object for text surface
+textRect1 = text11.get_rect()  
+textRect2 = text22.get_rect()
+textRect3 = text33.get_rect()
+textRect4 = text44.get_rect()
+  
+#text surface position on object 
+textRect1.center = (rectX, rectY)
+textRect2.center = (rectX, rectY + 15)
+textRect3.center = (rectX, rectY + 30)
+textRect4.center = (rectX, rectY + 45)
+
+# infinite loop 
+while True : 
+    display_surface.background 
+ 
+    display_surface.blit(text11, textRect1)
+    display_surface.blit(text22, textRect2)
+    display_surface.blit(text33, textRect3)
+    display_surface.blit(text44, textRect4)
+   
+    for event in pygame.event.get() : 
+        if event.type == pygame.QUIT : 
+  
+            pygame.quit() 
+   
+            quit() 
+   
+        pygame.display.update()
 
 
 #this is a function that generates people for the start of the simulation
